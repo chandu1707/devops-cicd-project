@@ -1,74 +1,617 @@
 
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1e293b;
+    background: #f4f7fb;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f0f4f8;
-    color: #333;
+    margin: 0;
 }
 
-header {
-    background: #173b65;
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
-}
-
-header h1 {
-    margin-bottom: 10px;
-}
-
-.container {
+/* Header */
+.header {
+    background: #172554;
+    color: #ffffff;
+    padding: 32px 5%;
     display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    padding: 40px 20px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
-.card {
-    background: white;
-    width: 320px;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.eyebrow {
+    color: #93c5fd;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
 }
 
-.card h2 {
-    color: #173b65;
-    margin-bottom: 18px;
+.header h1 {
+    margin: 10px 0;
+    font-size: clamp(25px, 4vw, 36px);
 }
 
-.card p {
-    margin-bottom: 15px;
+.subtitle {
+    margin-bottom: 0;
+    color: #cbd5e1;
     line-height: 1.6;
 }
 
-.card ul {
-    padding-left: 20px;
-    line-height: 2;
+.project-status {
+    background: #14532d;
+    color: #dcfce7;
+    border: 1px solid #22c55e;
+    border-radius: 30px;
+    padding: 11px 15px;
+    white-space: nowrap;
+    font-size: 13px;
 }
 
-button {
-    background: #087f8c;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 5px;
-    cursor: pointer;
+/* Main Container */
+.container {
+    max-width: 1500px;
+    margin: auto;
+    padding: 28px;
 }
 
-button:hover {
-    background: #065f68;
+/* Statistics Cards */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
 }
 
-footer {
-    text-align: center;
+.stat-card,
+.overall-progress,
+.pipeline {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
     padding: 20px;
+    box-shadow: 0 3px 12px #0f172a08;
+}
+
+.stat-card p {
+    color: #64748b;
+    margin: 0;
+    font-size: 14px;
+}
+
+.stat-card h2 {
+    font-size: 32px;
+    margin: 12px 0 0;
+    color: #1d4ed8;
+}
+
+/* Overall Progress */
+.overall-progress {
     margin-top: 20px;
-    color: #555;
+}
+
+.progress-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.progress-heading h2,
+.pipeline h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
+.progress-heading p,
+.section-description {
+    margin: 0 0 16px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+#overallPercent {
+    font-size: 27px;
+    color: #15803d;
+}
+
+.progress-track,
+.task-progress-track {
+    width: 100%;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-track {
+    height: 12px;
+}
+
+.progress-fill,
+.task-progress-fill {
+    height: 100%;
+    width: 0;
+    background: #16a34a;
+    border-radius: 20px;
+    transition: width 0.25s ease;
+}
+
+/* Bottleneck Monitor */
+.bottleneck {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin: 22px 0 28px;
+    padding: 20px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-left: 5px solid #2563eb;
+    border-radius: 10px;
+}
+
+.bottleneck h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.bottleneck p {
+    margin: 0;
+    line-height: 1.7;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.alert-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 30px;
+    height: 30px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.bottleneck-alert {
+    background: #fef2f2;
+    border-color: #fecaca;
+    border-left-color: #dc2626;
+}
+
+.bottleneck-alert h2 {
+    color: #b91c1c;
+}
+
+.bottleneck-alert .alert-icon {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+/* Kanban Board Heading */
+.board-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.board-heading h2 {
+    margin: 0 0 7px;
+    font-size: 23px;
+}
+
+.board-heading p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Buttons */
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+    font-weight: bold;
+    font-family: inherit;
+    transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+button:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 2px;
+}
+
+.primary-btn {
+    padding: 12px 16px;
+    background: #2563eb;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Kanban Board */
+.kanban-board {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(230px, 1fr));
+    gap: 15px;
+    align-items: start;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.column {
+    min-height: 300px;
+    background: #e9eef6;
+    border: 1px solid #dce4ef;
+    border-radius: 12px;
+    padding: 13px;
+}
+
+.column-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2px 2px 15px;
+}
+
+.column-heading h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.count {
+    min-width: 27px;
+    text-align: center;
+    padding: 5px 8px;
+    background: #ffffff;
+    color: #334155;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.empty-column {
+    color: #64748b;
+    font-size: 13px;
+    text-align: center;
+    padding: 25px 8px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+}
+
+/* Task Cards */
+.task {
+    min-width: 0;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid #64748b;
+    border-radius: 9px;
+    padding: 14px;
+    box-shadow: 0 2px 6px #0f172a08;
+}
+
+.task.blocked {
+    border-top-color: #dc2626;
+}
+
+.task h4 {
+    margin: 0 0 9px;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.task-description {
+    margin: 0 0 12px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+/* Priority Labels */
+.label {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 8px;
+    border-radius: 20px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.label.high {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.label.medium {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.label.low {
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* Task Progress */
+.task-progress-label {
+    margin: 0 0 6px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.task-progress-track {
+    height: 7px;
+    margin-bottom: 12px;
+}
+
+/* Blocked Task Details */
+.blocked-reason {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    background: #fef2f2;
+    color: #991b1b;
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Task Action Buttons */
+.task-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.task-actions button {
+    padding: 9px;
+    font-size: 12px;
+    width: 100%;
+}
+
+.move-btn {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.move-btn:hover {
+    background: #1d4ed8;
+}
+
+.block-btn {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.block-btn:hover {
+    background: #fed7aa;
+}
+
+.delete-btn {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.delete-btn:hover {
+    background: #fecaca;
+}
+
+/* Recently Deleted Tasks */
+.deleted-section {
+    background: #ffffff;
+    padding: 24px;
+    margin: 28px 0;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.deleted-section h2 {
+    color: #243047;
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.deleted-section .section-description {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.deleted-list,
+#deletedTasksContainer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+#deletedTasksContainer .task,
+#deletedTasksContainer .task-card {
+    background: #f8fafc;
+    padding: 16px;
+    border: 1px solid #dbe3ee;
+    border-left: 4px solid #94a3b8;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+#deletedTasksContainer .task h4,
+#deletedTasksContainer .task-card h3,
+#deletedTasksContainer .task-card h4 {
+    color: #334155;
+    font-size: 16px;
+    margin-top: 0;
+}
+
+#deletedTasksContainer .task-description,
+#deletedTasksContainer .task-card p {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#deletedTasksContainer .task-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#deletedTasksContainer button {
+    padding: 9px 12px;
+    margin: 5px 4px 0 0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#deletedTasksContainer .restore-btn {
+    background: #dcfce7;
+    color: #166534;
+}
+
+#deletedTasksContainer .restore-btn:hover {
+    background: #bbf7d0;
+}
+
+#deletedTasksContainer .permanent-btn {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+#deletedTasksContainer .permanent-btn:hover {
+    background: #fecaca;
+}
+
+/* CI/CD Pipeline */
+.pipeline {
+    margin-top: 28px;
+}
+
+.pipeline-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.pipeline-step {
+    padding: 18px;
+    border: 1px solid #dbeafe;
+    background: #f8fbff;
+    border-radius: 9px;
+}
+
+.pipeline-number {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pipeline-step h3 {
+    margin: 10px 0 6px;
+    font-size: 17px;
+}
+
+.pipeline-step p,
+.pipeline-note {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.pipeline-note {
+    margin-top: 16px;
+}
+
+/* Footer */
+footer {
+    padding: 24px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* Tablet Layout */
+@media (max-width: 1000px) {
+    .stats,
+    .pipeline-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .kanban-board {
+        grid-template-columns: repeat(4, 250px);
+    }
+}
+
+/* Smaller Screens */
+@media (max-width: 900px) {
+    .deleted-list,
+    #deletedTasksContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile Layout */
+@media (max-width: 600px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 25px 20px;
+    }
+
+    .container {
+        padding: 18px 14px;
+    }
+
+    .stats,
+    .pipeline-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card h2 {
+        font-size: 26px;
+    }
+
+    .board-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .progress-heading h2 {
+        font-size: 17px;
+    }
+
+    .deleted-list,
+    #deletedTasksContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .deleted-section {
+        padding: 15px;
+    }
 }

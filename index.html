@@ -4,35 +4,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps CI/CD Project</title>
+    <title>DevOps Kanban Workflow Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>DevOps CI/CD Dashboard</h1>
-        <p>Build, Test, and Deploy with Automation</p>
+    <header class="header">
+        <div>
+            <p class="eyebrow">PROJECT MANAGEMENT · DEVOPS</p>
+            <h1>Kanban Workflow Dashboard</h1>
+            <p class="subtitle">
+                Track project progress, manage tasks, and identify bottlenecks.
+            </p>
+        </div>
+        <span class="project-status">● Project Active</span>
     </header>
 
     <main class="container">
-        <section class="card">
-            <h2>Application Status</h2>
-            <p id="status">Application is running successfully!</p>
-            <button onclick="checkStatus()">Check Status</button>
+        <section class="stats">
+            <article class="stat-card">
+                <p>Total Tasks</p>
+                <h2 id="totalTasks">0</h2>
+            </article>
+            <article class="stat-card">
+                <p>To Do</p>
+                <h2 id="todoTasks">0</h2>
+            </article>
+            <article class="stat-card">
+                <p>In Progress</p>
+                <h2 id="progressTasks">0</h2>
+            </article>
+            <article class="stat-card">
+                <p>Completed</p>
+                <h2 id="completedTasks">0</h2>
+            </article>
         </section>
 
-        <section class="card">
-            <h2>CI/CD Pipeline</h2>
-            <ul>
-                <li>Source Code: GitHub</li>
-                <li>Build: Jenkins</li>
-                <li>Containerization: Docker</li>
-                <li>Deployment: Kubernetes</li>
-            </ul>
+        <section class="overall-progress">
+            <div class="progress-heading">
+                <div>
+                    <h2>Overall Project Progress</h2>
+                    <p id="progressSummary">Calculating progress...</p>
+                </div>
+                <strong id="overallPercent">0%</strong>
+            </div>
+            <div class="progress-track">
+                <div id="overallBar" class="progress-fill"></div>
+            </div>
+        </section>
+
+        <section class="bottleneck" id="bottleneckPanel">
+            <div class="alert-icon">!</div>
+            <div>
+                <h2 id="bottleneckTitle">Workflow Monitor</h2>
+                <p id="bottleneckMessage" aria-live="polite">
+                    Checking workflow...
+                </p>
+            </div>
+        </section>
+
+        <section class="board-section">
+            <div class="board-heading">
+                <div>
+                    <h2>Project Workflow</h2>
+                    <p>Move tasks through each stage as work progresses.</p>
+                </div>
+                <button id="addTaskBtn" class="primary-btn" type="button">
+                    + Add Task
+                </button>
+            </div>
+
+            <div class="kanban-board">
+                <section class="column">
+                    <div class="column-heading">
+                        <h3>To Do</h3>
+                        <span id="todoCount" class="count">0</span>
+                    </div>
+                    <div class="task-list" id="todo"></div>
+                </section>
+
+                <section class="column">
+                    <div class="column-heading">
+                        <h3>In Progress</h3>
+                        <span id="progressCount" class="count">0</span>
+                    </div>
+                    <div class="task-list" id="progress"></div>
+                </section>
+
+                <section class="column">
+                    <div class="column-heading">
+                        <h3>Testing</h3>
+                        <span id="testingCount" class="count">0</span>
+                    </div>
+                    <div class="task-list" id="testing"></div>
+                </section>
+
+                <section class="column">
+                    <div class="column-heading">
+                        <h3>Done</h3>
+                        <span id="doneCount" class="count">0</span>
+                    </div>
+                    <div class="task-list" id="done"></div>
+                </section>
+            </div>
+        </section>
+
+        <!-- Recently Deleted Tasks -->
+        <section class="deleted-section">
+            <h2>
+                Recently Deleted Tasks
+                <span id="deletedCount" class="count">0</span>
+            </h2>
+            <p class="section-description">
+                Deleted tasks stay here until you restore or permanently delete them.
+            </p>
+            <div id="deletedTasksContainer" class="deleted-list">
+                <p>No deleted tasks.</p>
+            </div>
+        </section>
+
+        <!-- CI/CD Pipeline Overview -->
+        <section class="pipeline">
+            <h2>CI/CD Pipeline Overview</h2>
+            <p class="section-description">
+                Tools used in the project's delivery workflow.
+            </p>
+
+            <div class="pipeline-steps">
+                <article class="pipeline-step">
+                    <span class="pipeline-number">01</span>
+                    <h3>GitHub</h3>
+                    <p>Source code management</p>
+                </article>
+                <article class="pipeline-step">
+                    <span class="pipeline-number">02</span>
+                    <h3>Jenkins</h3>
+                    <p>Build and test automation</p>
+                </article>
+                <article class="pipeline-step">
+                    <span class="pipeline-number">03</span>
+                    <h3>Docker</h3>
+                    <p>Containerization</p>
+                </article>
+                <article class="pipeline-step">
+                    <span class="pipeline-number">04</span>
+                    <h3>Kubernetes</h3>
+                    <p>Application deployment</p>
+                </article>
+            </div>
+
+            <p class="pipeline-note">
+                This section describes the tools in the workflow; it does not
+                represent live CI/CD job results.
+            </p>
         </section>
     </main>
 
     <footer>
-        <p>DevOps CI/CD Project | Learning Automation</p>
+        DevOps CI/CD Project · Kanban Workflow and Bottleneck Monitoring
     </footer>
 
     <script src="script.js"></script>
